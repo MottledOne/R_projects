@@ -1,0 +1,11 @@
+---
+title: "rvest Tutorial"
+output: html_notebook
+---
+
+URL for tutorial: https://www.datacamp.com/community/tutorials/r-web-scraping-rvest
+
+```{r}
+
+```
+

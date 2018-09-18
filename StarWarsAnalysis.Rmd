@@ -1,0 +1,34 @@
+---
+title: "'Star Wars' Dataset Analysis"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+data(starwars)
+
+colnames(starwars)
+
+starwars %>% 
+  filter(name == "Luke Skywalker") %>% 
+  select(birth_year) %>% 
+  .[[1]]
+
+starwars %>% 
+  select(name, birth_year)
+
+starwars <- starwars %>% 
+  mutate(bmi = mass/(height*1e-2)^2)
+
+starwars %>% 
+  filter(mass != max(mass, na.rm = TRUE)) %>% 
+  ggplot(data = ., aes(x = mass, y = height)) + 
+    geom_point(mapping = aes(color = species))
+
+starwars %>% 
+  count(species) %>% 
+  arrange(desc(n)) %>% 
+  # head() %>% 
+  ggplot(.,aes(x = species, y = n))+
+  geom_col()
+```
+

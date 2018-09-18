@@ -1,0 +1,31 @@
+---
+title: "Web Scraping Tutorial"
+output: html_notebook
+---
+
+This tutorial is based on the following tutorial from [AnalyticsVidhya](https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/) 
+
+```{r}
+library(rvest)
+library(tidyverse)
+```
+
+```{r}
+url <- 'https://en.wikipedia.org/wiki/Los_Angeles_Public_Library'
+
+webpage <- read_html(url)
+
+rank_data_html <- html_nodes(webpage,'.jquery-tablesorter')
+
+rank_data <- html_text(rank_data_html)
+
+
+branch_data <- read_html(url) %>% 
+  html_nodes('table') %>% 
+  html_table(fill = TRUE) %>% 
+  .[[3]]
+
+branch_data
+```
+
+
